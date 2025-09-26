@@ -1,17 +1,17 @@
-from flask import Flask, render_template, request
+import sqlite3 
 
-app = Flask(__name__)
+conn = sqlite3.connect('database/students.db')
 
-@app.route("/")
-def home():
-    return render_template("add.html")  
+c = conn.cursor()
 
-@app.route("/submit_marks", methods=["POST"])
-def submit_marks():
-    student_name = request.form['student_name']
-    subject = request.form['subject']
-    marks = request.form['marks']
-    return f"Received: {student_name} - {subject} - {marks}"
+c.execute('''
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER,
+        email TEXT
+    )
+''')
 
-if __name__ == "__main__":
-    app.run(debug=True)
+conn.commit()
+conn.close()
