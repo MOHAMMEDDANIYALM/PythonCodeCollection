@@ -1,17 +1,11 @@
 import sqlite3 
+from flask import Flask , render_template,request,redirect
 
-conn = sqlite3.connect('database/students.db')
+app = Flask(__name__)
 
-c = conn.cursor()
+DATABASE = 'students.db'
 
-c.execute('''
-    CREATE TABLE IF NOT EXISTS students (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        age INTEGER,
-        email TEXT
-    )
-''')
-
-conn.commit()
-conn.close()
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn 
