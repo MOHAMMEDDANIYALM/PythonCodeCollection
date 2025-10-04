@@ -2,59 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Your Marks</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Student Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {background-color: #f1f1f1;}
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+    </style>
 </head>
-<body class="students-page">
-    <div class="container">
-        <h1>View Your Marks</h1>
+<body>
+<div class="container">
+    <h1>Student Marks</h1>
 
-        <form method="POST" action="{{ url_for('view_marks') }}" class="form-box">
-            <input type="text" name="query" placeholder="Enter UUCMS No or Name" required>
-            <input type="submit" value="Search" class="btn">
-            <a href="/view_marks" class="btn">Reset</a>
-        </form>
-
-        {% if student_data %}
-        <table>
-            <thead>
-                <tr>
-                    <th>UUCMS No</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>MSC</th>
-                    <th>EVS</th>
-                    <th>DOC</th>
-                    <th>ENG</th>
-                    <th>HIN</th>
-                    <th>C</th>
-                    <th>Total</th>
-                    <th>CGPA</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for data in student_data %}
-                <tr>
-                    <td>{{ data.student.uucms }}</td>
-                    <td>{{ data.student.name }}</td>
-                    <td>{{ data.student.age }}</td>
-                    <td>{{ data.marks.msc }}</td>
-                    <td>{{ data.marks.evs }}</td>
-                    <td>{{ data.marks.doc }}</td>
-                    <td>{{ data.marks.eng }}</td>
-                    <td>{{ data.marks.hin }}</td>
-                    <td>{{ data.marks.c }}</td>
-                    <td>{{ data.total }}</td>
-                    <td>{{ data.cgpa }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% elif request.method == 'POST' %}
-        <p>Student not found. Please check your UUCMS No or Name.</p>
-        {% endif %}
-
-        <a href="/" class="btn">Back to Home</a>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>UUCMS</th>
+                <th>Name</th>
+                <th>MSC</th>
+                <th>EVS</th>
+                <th>DOC</th>
+                <th>ENG</th>
+                <th>HIN</th>
+                <th>C</th>
+                <th>Total</th>
+                <th>CGPA</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in students_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ data.student['uucms'] }}</td>
+                <td>{{ data.student['name'] }}</td>
+                <td>{{ data.marks['msc'] if data.marks else '-' }}</td>
+                <td>{{ data.marks['evs'] if data.marks else '-' }}</td>
+                <td>{{ data.marks['doc'] if data.marks else '-' }}</td>
+                <td>{{ data.marks['eng'] if data.marks else '-' }}</td>
+                <td>{{ data.marks['hin'] if data.marks else '-' }}</td>
+                <td>{{ data.marks['c'] if data.marks else '-' }}</td>
+                <td>{{ data.total }}</td>
+                <td>{{ data.cgpa }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

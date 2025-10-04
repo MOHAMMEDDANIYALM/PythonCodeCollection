@@ -173,6 +173,46 @@ def view_marks():
     return render_template('student_marks.html', student_data=student_data)
 
 # ----------------------
+# Student Marks Page (All students sorted by CGPA)
+# ----------------------
+@app.route('/student_marks', methods=['GET'])
+def student_marks():
+    search = request.args.get('search', '').strip()
+    conn = get_db_connection()
+
+    # Get all students (with optional search)
+    if search:
+        students_list = conn.execute(
+            "SELECT * FROM students WHERE name LIKE ? OR uucms LIKE ?",
+            (f'%{search}%', f'%{search}%')
+        ).fetchall()
+    else:
+        students_list = conn.execute("SELECT * FROM students").fetchall()
+
+    # Get all marks
+    marks_list = conn.execute("SELECT * FROM marks").fetchall()
+    conn.close()
+
+    # Combine student + marks data
+    students_data = []
+    for student in students_list:
+        marks = next((m for m in marks_list if m['student_id'] == student['id']), None)
+        total = marks['total'] if marks else None
+        cgpa = marks['cgpa'] if marks else 0  # 0 for sorting students without marks
+
+        students_data.append({
+            'student': student,
+            'marks': marks,
+            'total': total if total is not None else '-',
+            'cgpa': cgpa if cgpa != 0 else '-'  # display '-' if no CGPA
+        })
+
+    # Sort students by CGPA descending
+    students_data.sort(key=lambda x: x['cgpa'] if isinstance(x['cgpa'], float) else -1, reverse=True)
+
+    return render_template('student_marks.html', students_data=students_data, search=search)
+
+# ----------------------
 # Run the App
 # ----------------------
 if __name__ == '__main__':
