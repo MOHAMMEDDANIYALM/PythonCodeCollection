@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Enter Marks</title>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1>Teacher: Enter Marks</h1>
-    <form action="/submit_marks" method="post">
-        Student Name: <input type="text" name="student_name"><br><br>
-        Subject: <input type="text" name="subject"><br><br>
-        Marks: <input type="number" name="marks"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+<body class="add-page">
+    <div class="container">
+        <h1>Add Student</h1>
+        <form action="/add" method="post" class="form-box">
+            <label for="uucms">UUCMS No:</label>
+            <input type="text" name="uucms" id="uucms" required>
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" required>
+
+            <input type="submit" value="Add Student" class="btn">
+            <a href="/" class="btn return-btn">Return Home</a>
+        </form>
+    </div>
 </body>
 </html>

@@ -1,10 +1,24 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Teacher Marks App</title>
+    <meta charset="UTF-8">
+    <title>Home - Teacher Marks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1>Welcome to the Teacher Marks Entry Web!<h1>
-    <p>This is your first flask web page.</p> 
+<body class="home-page">
+    <div class="container">
+        <!-- Logo -->
+        <img src="{{ url_for('static', filename='images/micalogo.png') }}" alt="College Logo" class="logo">
+
+        <!-- Heading -->
+        <h1>Teacher Marks Entry System</h1>
+
+        <!-- Action buttons -->
+        <div class="button-box">
+            <a href="/add" class="btn">Add Student</a>
+            <a href="/students" class="btn">View Students</a>
+        </div>
+    </div>
 </body>
 </html>

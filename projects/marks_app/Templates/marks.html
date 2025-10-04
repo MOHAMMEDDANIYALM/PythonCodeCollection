@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Marks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="marks-page">
+    <div class="container">
+        <h1>Add Marks for {{ student.name }}</h1>
+        <form action="" method="post" class="form-box">
+            <label>MSc:</label> <input type="number" name="msc" required><br><br>
+            <label>EVS:</label> <input type="number" name="evs" required><br><br>
+            <label>DOC:</label> <input type="number" name="doc" required><br><br>
+            <label>English:</label> <input type="number" name="eng" required><br><br>
+            <label>Hindi:</label> <input type="number" name="hin" required><br><br>
+            <label>C Programming:</label> <input type="number" name="c" required><br><br>
+
+            <input type="submit" value="Save Marks" class="btn">
+        </form>
+        <a href="/students" class="btn">Back to Students</a>
+    </div>
+</body>
+</html>
