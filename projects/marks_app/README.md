@@ -20,10 +20,11 @@ This project was developed with guidance and assistance from AI tools to structu
 ## Screenshots
 > Screenshots are examples; your data may vary.
 
-![Home Page](projects/marks_app/Static/images/home.png)
-![Add Page](projects/marks_app/Static/images/addpage.png)
-![Marks Adding Page](projects/marks_app/Static/images/markspage.png)
-![Student Checking Page](projects/marks_app/Static/images/checklist.png)
+![Home Page](Static/images/homepage.png)
+![Add Page](Static/images/addpage.png)
+![Marks Adding Page](Static/images/markspage.png)
+![Student Checking Page](Static/images/checklist.png)
+
 
 ## Technologies Used
 - Python 3.9+
