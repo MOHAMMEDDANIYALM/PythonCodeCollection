@@ -33,6 +33,20 @@ This project was developed with guidance and assistance from AI tools to structu
 - HTML/CSS (for templates)
 
 ## Getting Started
-1. Clone the repository:  
+### Clone the Repository
+To get a local copy of the project, run:
+
 ```bash
-git clone https://github.com/yourusername/student-marks-app.git
+git clone https://github.com/MOHAMMEDDANIYALM/PythonCodeCollection.git
+cd PythonCodeCollection/projects/marks_app
+
+## Install Flask if you don’t have it 
+pip install flask
+
+##Run the App
+Run the App 
+
+##Open in Browser
+PC: http://127.0.0.1:5000/ → full access
+
+Mobile (same network): http://<PC-IP>:5000/student_marks → read-only student table
